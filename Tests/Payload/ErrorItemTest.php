@@ -33,7 +33,7 @@ class ErrorItemTest extends KernelTestCase
 
         $exception = $data['exception'];
         $this->assertEquals($mapped, $exception['class']);
-        $this->assertContains($message, $exception['message']);
+        $this->assertStringContainsString($message, $exception['message']);
 
         $this->assertCount(1, $data['frames']);
 

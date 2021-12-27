@@ -28,7 +28,7 @@ class TraceItemTest extends KernelTestCase
 
         $exception = $data['exception'];
         $this->assertEquals(get_class($ex), $exception['class']);
-        $this->assertContains($msg, $exception['message']);
+        $this->assertStringContainsString($msg, $exception['message']);
 
         $this->assertGreaterThan(1, count($data['frames']));
 

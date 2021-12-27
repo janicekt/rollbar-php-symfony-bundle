@@ -24,7 +24,7 @@ class GeneratorTest extends KernelTestCase
     {
         parent::setUp();
 
-        static::bootKernel();
+        self::bootKernel();
     }
 
     /**
@@ -32,13 +32,13 @@ class GeneratorTest extends KernelTestCase
      */
     public function testGetContainer(): void
     {
-        $container = $this->getContainer();
         $generator = $this->getGenerator();
 
         $result = $generator->getContainer();
 
-        $this->assertEquals($container, $result);
+        $this->assertInstanceOf(ContainerInterface::class, $result);
     }
+
 
     /**
      * Test getKernel.
@@ -97,10 +97,9 @@ class GeneratorTest extends KernelTestCase
      */
     public function testGetRequestInfo(): void
     {
-        $container = $this->getContainer();
         $generator = $this->getGenerator();
 
-        $request = $container->get('request_stack')->getCurrentRequest();
+        $request = $this->getContainerInstance()->get('request_stack')->getCurrentRequest();
         if (empty($request)) {
             $request = new Request();
         }
@@ -185,7 +184,7 @@ class GeneratorTest extends KernelTestCase
 
         list($message, $payload) = $generator->getExceptionPayload($exception);
 
-        $this->assertContains($msg, $message);
+        $this->assertStringContainsString($msg, $message);
 
         $this->assertArrayHasKey('body', $payload);
         $this->assertArrayHasKey('request', $payload);
@@ -238,13 +237,12 @@ class GeneratorTest extends KernelTestCase
             [new ErrorItem()],
         ];
     }
-
     /**
      * Get container.
      *
      * @return ContainerInterface
      */
-    private function getContainer(): ContainerInterface
+    private function getContainerInstance(): ContainerInterface
     {
         return static::$container ?? static::$kernel->getContainer();
     }
@@ -256,6 +254,6 @@ class GeneratorTest extends KernelTestCase
      */
     private function getGenerator()
     {
-        return $this->getContainer()->get('test.' . Generator::class);
+        return $this->getContainerInstance()->get('test.' . Generator::class);
     }
 }

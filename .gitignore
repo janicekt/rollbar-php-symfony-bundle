@@ -3,6 +3,7 @@
 /vendor/
 /var/
 !/var/.gitkeep
+.phpunit.result.cache
 
 composer.lock
 clover.xml

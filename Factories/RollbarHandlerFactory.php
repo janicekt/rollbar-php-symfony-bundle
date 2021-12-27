@@ -3,7 +3,7 @@
 namespace Rollbar\Symfony\RollbarBundle\Factories;
 
 use Psr\Log\LogLevel;
-use Rollbar\Monolog\Handler\RollbarHandler;
+use Monolog\Handler\RollbarHandler;
 use Rollbar\Rollbar;
 use Rollbar\Symfony\RollbarBundle\DependencyInjection\RollbarExtension;
 use Symfony\Component\DependencyInjection\ContainerInterface;

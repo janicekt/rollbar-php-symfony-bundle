@@ -27,19 +27,15 @@ class RollbarExtensionTest extends AbstractExtensionTestCase
     }
 
     /**
-     * Test config enabled vars.
+     * Test config vars.
      *
      * @dataProvider generatorConfigVars
-     *
-     * @param string $var
-     * @param array  $expected
      */
-    public function testConfigEnabledVars(string $var, array $expected): void
+    public function testConfigVars(string $var, array $expected, array $loadParameters = []): void
     {
-        $this->load();
+        $this->load($loadParameters);
 
         $param = $this->container->getParameter($var);
-
         foreach ($expected as $key => $value) {
             $this->assertEquals($param[$key], $value);
         }
@@ -54,28 +50,8 @@ class RollbarExtensionTest extends AbstractExtensionTestCase
     {
         return [
             ['rollbar.config', ['enabled' => true]],
+            ['rollbar.config', ['enabled' => false], ['enabled' => false]],
         ];
-    }
-
-    /**
-     * Test config disabled vars.
-     *
-     * @dataProvider generatorConfigVars
-     *
-     * @expectedException \PHPUnit_Framework_ExpectationFailedException
-     *
-     * @param string $var
-     * @param array  $expected
-     */
-    public function testConfigDisabledVars(string $var, array $expected): void
-    {
-        $this->load(['enabled' => false]);
-
-        $param = $this->container->getParameter($var);
-
-        foreach ($expected as $key => $value) {
-            $this->assertEquals($param[$key], $value);
-        }
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Fixtures\App;
+
 use Rollbar\Symfony\RollbarBundle\RollbarBundle;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
