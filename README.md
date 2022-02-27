@@ -5,9 +5,9 @@
 
 Rollbar full-stack error tracking for Symfony.
 
-Supported Symfony versions: 5+
+Supported Symfony versions: 5.4+ and 6+
 
-Support for Symfony versions 5+ is maintained in branch `master` and tags `v4+`.
+Support for Symfony versions 5.4+ and 6+ is maintained in branch `master` and tags `v6+`.
 
 Support for Symfony versions 3.* and 4.* is maintained in branch `symfony_3_4` and tags in the `v3.*` series.
 
